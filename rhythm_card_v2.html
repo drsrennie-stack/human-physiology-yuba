@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Course Rhythm &amp; Unit Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sand: #F2E8D5;
+  --sand-cream: #FEF9EC;
+  --ocean-deep: #1E3D4C;
+  --ocean-mid: #335E6E;
+  --sea-glass: #8FB8BF;
+  --sea-glass-mist: #DCE8EB;
+  --terra: #A0402A;
+  --ink: #15262F;
+  --hairline: #DCE8EB;
+  --rule: #a8bfc5;
+  --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --serif: 'Lora', Georgia, serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: #ffffff;
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 28px 72px;
+}
+
+/* Header */
+.header {
+  padding-bottom: 28px;
+  margin-bottom: 44px;
+  border-bottom: 2px solid var(--ocean-deep);
+}
+
+.eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--terra);
+  margin-bottom: 12px;
+}
+
+h1 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 500;
+  color: var(--ocean-deep);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  margin-bottom: 16px;
+}
+
+.intro {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--ocean-mid);
+  max-width: 680px;
+  line-height: 1.5;
+}
+
+/* Section structure */
+.section {
+  margin-bottom: 64px;
+}
+
+.section-label {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.section-number {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--terra);
+  font-weight: 500;
+}
+
+.section-title {
+  font-family: var(--sans);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--ocean-deep);
+  letter-spacing: -0.01em;
+}
+
+.section-note {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  color: var(--ocean-mid);
+  margin-bottom: 28px;
+  max-width: 720px;
+  line-height: 1.5;
+}
+
+/* LEGEND */
+.legend {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+  padding: 14px 0;
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: var(--ocean-mid);
+}
+
+.legend-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  border: 1.5px solid;
+}
+
+.legend-swatch.foundational { border-color: var(--sea-glass); background: transparent; }
+.legend-swatch.core { border-color: var(--terra); background: transparent; }
+.legend-swatch.integration { border-color: var(--ocean-mid); background: transparent; }
+
+/* COURSE MAP */
+.unit-map {
+  border: 1px solid var(--hairline);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.unit-row {
+  display: grid;
+  grid-template-columns: 150px 1fr 120px;
+  gap: 0;
+  align-items: stretch;
+  border-bottom: 1px solid var(--hairline);
+  position: relative;
+}
+
+.unit-row:last-child { border-bottom: none; }
+
+.unit-row::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+}
+
+.unit-row.foundational::before { background: var(--sea-glass); }
+.unit-row.core::before { background: var(--terra); }
+.unit-row.integration::before { background: var(--ocean-mid); }
+
+.unit-weeks {
+  padding: 18px 20px 18px 24px;
+  border-right: 1px solid var(--hairline);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.unit-weeks-num {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ocean-deep);
+  line-height: 1.1;
+}
+
+.unit-weeks-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ocean-mid);
+  margin-top: 4px;
+}
+
+.unit-name {
+  padding: 18px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.unit-name-main {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ocean-deep);
+  letter-spacing: -0.005em;
+  margin-bottom: 3px;
+}
+
+.unit-name-sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.88rem;
+  color: var(--ocean-mid);
+  line-height: 1.4;
+}
+
+.unit-length {
+  padding: 18px 22px;
+  border-left: 1px solid var(--hairline);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.length-pill {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 3px;
+  border: 1.5px solid;
+}
+
+.length-pill.one-week { color: var(--sea-glass); border-color: var(--sea-glass); }
+.length-pill.two-week { color: var(--terra); border-color: var(--terra); }
+.length-pill.final { color: var(--ocean-mid); border-color: var(--ocean-mid); }
+
+/* HOW UNITS WORK */
+.pace-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.pace-card {
+  border: 1px solid var(--hairline);
+  border-radius: 8px;
+  padding: 24px 26px;
+  background: #ffffff;
+  position: relative;
+}
+
+.pace-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  border-radius: 8px 0 0 8px;
+}
+
+.pace-card.one-week-card::before { background: var(--sea-glass); }
+.pace-card.two-week-card::before { background: var(--terra); }
+
+.pace-eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.pace-card.one-week-card .pace-eyebrow { color: var(--sea-glass); }
+.pace-card.two-week-card .pace-eyebrow { color: var(--terra); }
+
+.pace-title {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--ocean-deep);
+  margin-bottom: 14px;
+  line-height: 1.2;
+}
+
+.pace-body {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--ocean-mid);
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.pace-flow {
+  padding-top: 18px;
+  border-top: 1px dashed var(--hairline);
+}
+
+.flow-step {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--hairline);
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.flow-step:last-child { border-bottom: none; }
+
+.flow-day {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ocean-mid);
+  min-width: 72px;
+  padding-top: 2px;
+}
+
+.flow-text {
+  font-size: 0.9rem;
+  color: var(--ink);
+  line-height: 1.45;
+  flex: 1;
+}
+
+/* WEEKLY RHYTHM */
+.week-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+.day {
+  background: #ffffff;
+  border: 1px solid var(--hairline);
+  border-radius: 6px;
+  padding: 16px 13px;
+  display: flex;
+  flex-direction: column;
+  min-height: 230px;
+}
+
+.day-name {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ocean-deep);
+  margin-bottom: 3px;
+}
+
+.day-marker {
+  font-family: var(--serif);
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--terra);
+  margin-bottom: 14px;
+  min-height: 1.2em;
+}
+
+.day-block {
+  padding: 10px 0;
+  border-top: 1px solid var(--hairline);
+}
+
+.day-block:last-child { padding-bottom: 0; }
+
+.block-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ocean-mid);
+  margin-bottom: 4px;
+}
+
+.block-text {
+  font-size: 0.82rem;
+  color: var(--ink);
+  line-height: 1.4;
+}
+
+.block-instructor {
+  color: var(--terra);
+  font-weight: 600;
+}
+
+/* CLOSING NOTE */
+.closing {
+  margin-top: 56px;
+  padding: 24px 26px 24px 30px;
+  border-left: 4px solid var(--ocean-deep);
+}
+
+.closing-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--terra);
+  margin-bottom: 8px;
+}
+
+.closing-text {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--ocean-deep);
+  line-height: 1.5;
+  max-width: 760px;
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+  .week-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .day { min-height: auto; }
+  .pace-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 700px) {
+  .unit-row {
+    grid-template-columns: 110px 1fr 90px;
+  }
+  .unit-weeks { padding: 14px 12px 14px 18px; }
+  .unit-name { padding: 14px 14px; }
+  .unit-length { padding: 14px 12px; }
+  .unit-name-main { font-size: 0.98rem; }
+}
+
+@media (max-width: 560px) {
+  .wrap { padding: 28px 16px 48px; }
+  .week-grid { grid-template-columns: repeat(2, 1fr); }
+  .unit-row {
+    grid-template-columns: 1fr;
+  }
+  .unit-weeks,
+  .unit-name,
+  .unit-length {
+    border-right: none;
+    border-left: none;
+    padding: 10px 16px 10px 20px;
+  }
+  .unit-weeks { padding-top: 16px; }
+  .unit-length { justify-content: flex-start; padding-bottom: 16px; }
+  .legend { gap: 16px; }
+}
+
+/* Print */
+@media print {
+  @page { margin: 0.5in; }
+  html, body { background: #fff; color: #000; }
+  .wrap { padding: 0; max-width: 100%; }
+  .day, .pace-card, .unit-map, .closing {
+    break-inside: avoid;
+    border-color: #000;
+  }
+  .unit-row, .flow-step { border-bottom-color: #000; }
+  .unit-weeks, .unit-length { border-color: #000; }
+  .section { break-inside: avoid-page; }
+  h1, .section-title, .pace-title, .unit-name-main, .closing-text { color: #000; }
+  .unit-row::before, .pace-card::before {
+    background: #000 !important;
+    width: 3px;
+  }
+  .length-pill { border-color: #000 !important; color: #000 !important; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="header">
+    <div class="eyebrow">BIO 431 &bull; Course Rhythm</div>
+    <h1>How This Course Works</h1>
+    <p class="intro">Sixteen weeks. Twelve units. A predictable weekly rhythm that never changes. Some units take one week, some take two, so the harder systems get the time they need.</p>
+  </header>
+
+  <!-- SECTION 01: COURSE MAP -->
+  <section class="section">
+    <div class="section-label">
+      <div class="section-number">01</div>
+      <div class="section-title">The Course Map</div>
+    </div>
+    <p class="section-note">Every unit builds on the foundational labs at the start of the term. Harder systems get two weeks so we can go deeper without rushing.</p>
+
+    <div class="legend">
+      <div class="legend-item">
+        <span class="legend-swatch foundational"></span>
+        Foundational labs: building your reference toolkit
+      </div>
+      <div class="legend-item">
+        <span class="legend-swatch core"></span>
+        Core systems: two-week depth units
+      </div>
+      <div class="legend-item">
+        <span class="legend-swatch integration"></span>
+        Integration and assessment
+      </div>
+    </div>
+
+    <div class="unit-map">
+
+      <div class="unit-row foundational">
+        <div class="unit-weeks">
+          <div class="unit-weeks-num">Week 1</div>
+          <div class="unit-weeks-label">Unit 01</div>
+        </div>
+        <div class="unit-name">
+          <div class="unit-name-main">Foundational Labs, Part 1</div>
+          <div class="unit-name-sub">Vital signs, complete blood count, inflammatory markers</div>
+        </div>
+        <div class="unit-length"><span class="length-pill one-week">1 week</span></div>
+      </div>
+
+      <div class="unit-row foundational">
+        <div class="unit-weeks">
+          <div class="unit-weeks-num">Week 2</div>
+          <div class="unit-weeks-label">Unit 02</div>
+        </div>
+        <div class="unit-name">
+          <div class="unit-name-main">Foundational Labs, Part 2</div>
+          <div class="unit-name-sub">Basic metabolic panel, urinalysis, coagulation</div>
+        </div>
+        <div class="unit-length"><span class="length-pill one-week">1 week</span></div>
+      </div>
+
+      <div class="unit-row foundational">
+        <div class="unit-weeks">
+          <div class="unit-weeks-num">Week 3</div>
+          <div class="unit-weeks-label">Unit 03</div>
+        </div>
+        <div class="unit-name">
+          <div class="unit-name-main">Foundational Labs, Part 3</div>
+          <div class="unit-name-sub">Arterial blood gas and acid-base introduction</div>
+        </div>
+        <div class="unit-length"><span class="length-pill one-week">1 week</span></div>
+      </div>
+
+      <div class="unit-row core">
+        <div class="unit-weeks">
+          <div class="unit-weeks-num">Weeks 4 &amp; 5</div>
+          <div class="unit-weeks-label">Unit 04</div>
+        </div>
+        <div class="unit-name">
+          <div class="unit-name-main">Cardiovascular System</div>
+          <div class="unit-name-sub">Electrical activity, mechanics, regulation, perfusion</div>
+        </div>
+        <div class="unit-length"><span class="length-pill two-week">2 weeks</span></div>
+      </div>
+
+      <div class="unit-row core">
+        <div class="unit-weeks">
+          <div class="unit-weeks-num">Weeks 6 &amp; 7</div>
+          <div class="unit-weeks-label">Unit 05</div>
+        </div>
+        <div class="unit-name">
+          <div class="unit-name-main">Respiratory System</div>
+          <div class="unit-name-sub">Gas exchange, lung mechanics, ventilation control</div>
+        </div>
+        <div class="unit-length"><span class="length-pill two-week">2 weeks</span></div>
+      </div>
+
+      <div class="unit-row foundational">
+        <div class="unit-weeks">
+          <div class="unit-weeks-num">Week 8</div>
+          <div class="unit-weeks-label">Unit 06</div>
+        </div>
+        <div class="unit-name">
+          <div class="unit-name-main">Acid-Base Integration</div>
+          <div class="unit-name-sub">Bringing respiratory and metabolic buffering together</div>
+        </div>
+        <div class="unit-length"><span class="length-pill one-week">1 week</span></div>
+      </div>
+
+      <div class="unit-row core">
+        <div class="unit-weeks">
+          <div class="unit-weeks-num">Weeks 9 &amp; 10</div>
+          <div class="unit-weeks-label">Unit 07</div>
+        </div>
+        <div class="unit-name">
+          <div class="unit-name-main">Renal System</div>
+          <div class="unit-name-sub">Filtration, tubular transport, volume and electrolyte regulation</div>
+        </div>
+        <div class="unit-length"><span class="length-pill two-week">2 weeks</span></div>
+      </div>
+
+      <div class="unit-row foundational">
+        <div class="unit-weeks">
+          <div class="unit-weeks-num">Week 11</div>
+          <div class="unit-weeks-label">Unit 08</div>
+        </div>
+        <div class="unit-name">
+          <div class="unit-name-main">Hematology</div>
+          <div class="unit-name-sub">Erythropoiesis, hemostasis, oxygen transport</div>
+        </div>
+        <div class="unit-length"><span class="length-pill one-week">1 week</span></div>
+      </div>
+
+      <div class="unit-row core">
+        <div class="unit-weeks">
+          <div class="unit-weeks-num">Weeks 12 &amp; 13</div>
+          <div class="unit-weeks-label">Unit 09</div>
+        </div>
+        <div class="unit-name">
+          <div class="unit-name-main">Endocrine System</div>
+          <div class="unit-name-sub">Hormone axes, feedback loops, receptor signaling</div>
+        </div>
+        <div class="unit-length"><span class="length-pill two-week">2 weeks</span></div>
+      </div>
+
+      <div class="unit-row foundational">
+        <div class="unit-weeks">
+          <div class="unit-weeks-num">Week 14</div>
+          <div class="unit-weeks-label">Unit 10</div>
+        </div>
+        <div class="unit-name">
+          <div class="unit-name-main">Neuromuscular System</div>
+          <div class="unit-name-sub">Action potentials, neurotransmission, clinical exam as assay</div>
+        </div>
+        <div class="unit-length"><span class="length-pill one-week">1 week</span></div>
+      </div>
+
+      <div class="unit-row integration">
+        <div class="unit-weeks">
+          <div class="unit-weeks-num">Week 15</div>
+          <div class="unit-weeks-label">Unit 11</div>
+        </div>
+        <div class="unit-name">
+          <div class="unit-name-main">Multi-System Integration</div>
+          <div class="unit-name-sub">Sepsis, shock, and other cases that cross every system</div>
+        </div>
+        <div class="unit-length"><span class="length-pill final">1 week</span></div>
+      </div>
+
+      <div class="unit-row integration">
+        <div class="unit-weeks">
+          <div class="unit-weeks-num">Week 16</div>
+          <div class="unit-weeks-label">Unit 12</div>
+        </div>
+        <div class="unit-name">
+          <div class="unit-name-main">Final Oral Defenses &amp; Synthesis</div>
+          <div class="unit-name-sub">Demonstrating mastery across the whole term</div>
+        </div>
+        <div class="unit-length"><span class="length-pill final">1 week</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 02: HOW UNITS WORK -->
+  <section class="section">
+    <div class="section-label">
+      <div class="section-number">02</div>
+      <div class="section-title">How Units Work</div>
+    </div>
+    <p class="section-note">Every unit follows one of two paces. One-week units run a single acquire-apply-demonstrate cycle. Two-week units separate acquire from apply, so you have time to build the knowledge before you use it.</p>
+
+    <div class="pace-grid">
+
+      <div class="pace-card one-week-card">
+        <div class="pace-eyebrow">Pace A</div>
+        <div class="pace-title">One-Week Units</div>
+        <p class="pace-body">Focused topics with clear boundaries. Concept, trainer, lab, submit, all inside one week.</p>
+        <div class="pace-flow">
+          <div class="flow-step">
+            <div class="flow-day">Monday</div>
+            <div class="flow-text">Concept launch video, cognitive trainer opens</div>
+          </div>
+          <div class="flow-step">
+            <div class="flow-day">Tue to Thu</div>
+            <div class="flow-text">Trainer research and hand work, discussion posts</div>
+          </div>
+          <div class="flow-step">
+            <div class="flow-day">Friday</div>
+            <div class="flow-text">Trainer submission due, Tier 2 focused lab opens</div>
+          </div>
+          <div class="flow-step">
+            <div class="flow-day">Sunday</div>
+            <div class="flow-text">Lab artifact and short oral defense due</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pace-card two-week-card">
+        <div class="pace-eyebrow">Pace B</div>
+        <div class="pace-title">Two-Week Units</div>
+        <p class="pace-body">Complex systems that need depth. Week one builds the knowledge, week two applies it and demonstrates mastery.</p>
+        <div class="pace-flow">
+          <div class="flow-step">
+            <div class="flow-day">Wk 1, Mon</div>
+            <div class="flow-text">Concept launch, two or three trainers open across the week</div>
+          </div>
+          <div class="flow-step">
+            <div class="flow-day">Wk 1, Fri</div>
+            <div class="flow-text">Trainer submissions due, self-check quiz</div>
+          </div>
+          <div class="flow-step">
+            <div class="flow-day">Wk 2, Mon</div>
+            <div class="flow-text">Tier 2 focused lab opens, Tier 3 integrated chart later in week</div>
+          </div>
+          <div class="flow-step">
+            <div class="flow-day">Wk 2, Sun</div>
+            <div class="flow-text">Full chart, drawing submission, and oral defense due</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 03: WEEKLY RHYTHM -->
+  <section class="section">
+    <div class="section-label">
+      <div class="section-number">03</div>
+      <div class="section-title">The Weekly Rhythm</div>
+    </div>
+    <p class="section-note">Same days, same deadlines, every week of the term. Your instructor touchpoints are marked in terra. The rhythm does not change regardless of unit pace.</p>
+
+    <div class="week-grid" role="list">
+
+      <div class="day" role="listitem">
+        <div class="day-name">Monday</div>
+        <div class="day-marker">Launch</div>
+        <div class="day-block">
+          <div class="block-label">You do</div>
+          <div class="block-text">Open current unit, watch concept launch, begin trainer</div>
+        </div>
+        <div class="day-block">
+          <div class="block-label">From Dr. Rennie</div>
+          <div class="block-text block-instructor">Concept launch video posted</div>
+        </div>
+      </div>
+
+      <div class="day" role="listitem">
+        <div class="day-name">Tuesday</div>
+        <div class="day-marker"></div>
+        <div class="day-block">
+          <div class="block-label">You do</div>
+          <div class="block-text">Trainer research and hand work</div>
+        </div>
+      </div>
+
+      <div class="day" role="listitem">
+        <div class="day-name">Wednesday</div>
+        <div class="day-marker">Midweek</div>
+        <div class="day-block">
+          <div class="block-label">You do</div>
+          <div class="block-text">Continue trainer, post to discussion</div>
+        </div>
+        <div class="day-block">
+          <div class="block-label">From Dr. Rennie</div>
+          <div class="block-text block-instructor">Substantive discussion responses</div>
+        </div>
+      </div>
+
+      <div class="day" role="listitem">
+        <div class="day-name">Thursday</div>
+        <div class="day-marker"></div>
+        <div class="day-block">
+          <div class="block-label">You do</div>
+          <div class="block-text">Finalize trainer, prepare submission</div>
+        </div>
+      </div>
+
+      <div class="day" role="listitem">
+        <div class="day-name">Friday</div>
+        <div class="day-marker">Submit</div>
+        <div class="day-block">
+          <div class="block-label">You do</div>
+          <div class="block-text">Trainer submission due, self-check quiz</div>
+        </div>
+        <div class="day-block">
+          <div class="block-label">From Dr. Rennie</div>
+          <div class="block-text block-instructor">Friday synthesis Loom</div>
+        </div>
+      </div>
+
+      <div class="day" role="listitem">
+        <div class="day-name">Saturday</div>
+        <div class="day-marker">White space</div>
+        <div class="day-block">
+          <div class="block-label">You do</div>
+          <div class="block-text">Rest, catch up, or start lab work</div>
+        </div>
+      </div>
+
+      <div class="day" role="listitem">
+        <div class="day-name">Sunday</div>
+        <div class="day-marker">Apply</div>
+        <div class="day-block">
+          <div class="block-label">You do</div>
+          <div class="block-text">Lab artifact or oral defense due, depending on unit</div>
+        </div>
+        <div class="day-block">
+          <div class="block-label">From Dr. Rennie</div>
+          <div class="block-text block-instructor">Monitoring sweep and outreach</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <div class="closing">
+    <div class="closing-label">The promise</div>
+    <div class="closing-text">Predictable structure, content that deepens at the right pace, feedback that arrives on schedule. You should never have to ask what is due or when.</div>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var FRAME_ID = 'rhythm_card_revised_v2';
+  function sendHeight() {
+    var h = Math.max(
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.offsetHeight
+    );
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({ id: FRAME_ID, height: h }, '*');
+    }
+  }
+  window.addEventListener('load', sendHeight);
+  window.addEventListener('resize', sendHeight);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(sendHeight);
+  }
+  if ('ResizeObserver' in window) {
+    new ResizeObserver(sendHeight).observe(document.body);
+  }
+  setTimeout(sendHeight, 100);
+  setTimeout(sendHeight, 500);
+  setTimeout(sendHeight, 1500);
+})();
+</script>
+</body>
+</html>
